@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import { Eye, EyeOff, User, Lock, Mail } from 'lucide-react';
 
 // Google avatar fallback using DiceBear (no API key needed)
 const getGoogleAvatar = (email) =>
@@ -100,35 +101,42 @@ export default function Login() {
         {/* Common Profile Pic Field (Optional) */}
         <div className="form-group" style={{ marginBottom: '16px' }}>
           <label className="form-label">Profile Picture URL (Optional)</label>
-          <input
-            type="url"
-            className="form-input"
-            placeholder="https://..."
-            value={profilePic}
-            onChange={(e) => setProfilePic(e.target.value)}
-          />
+          <div className="input-with-icon">
+            <span className="input-icon"><User size={16} /></span>
+            <input
+              type="url"
+              className="form-input with-icon"
+              placeholder="https://..."
+              value={profilePic}
+              onChange={(e) => setProfilePic(e.target.value)}
+            />
+          </div>
         </div>
 
         <div className="divider">Login Details</div>
 
         <div className="form-group">
           <label className="form-label">Username</label>
-          <input
-            type="text"
-            className="form-input"
-            placeholder="choose a username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+          <div className="input-with-icon">
+            <span className="input-icon"><User size={16} /></span>
+            <input
+              type="text"
+              className="form-input with-icon"
+              placeholder="choose a username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
         </div>
 
         <div className="form-group">
           <label className="form-label">Password</label>
           <div className="input-with-icon">
+            <span className="input-icon"><Lock size={16} /></span>
             <input
               type={showPassword ? "text" : "password"}
-              className="form-input"
+              className="form-input with-icon"
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -139,7 +147,7 @@ export default function Login() {
               className="password-toggle"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? '🙈' : '👁️'}
+              {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
             </button>
           </div>
         </div>
