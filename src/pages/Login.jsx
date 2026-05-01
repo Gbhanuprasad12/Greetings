@@ -10,6 +10,9 @@ export default function Login() {
   const [mode, setMode] = useState('gmail'); // 'gmail' | 'guest'
   const [gmail, setGmail] = useState('');
   const [gmailError, setGmailError] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState('');
   const [profilePic, setProfilePic] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -35,13 +38,17 @@ export default function Login() {
       setGmailError('Please enter a valid @gmail.com address.');
       return;
     }
+    if (!username.trim() || password.length < 6) {
+      setGmailError('Username required and Password must be 6+ chars.');
+      return;
+    }
     setGmailError('');
     setIsLoading(true);
 
     // Simulate a short loading (like OAuth handshake)
     setTimeout(() => {
       login({
-        name: nameFromEmail(trimmed),
+        name: username.trim(),
         email: trimmed,
         profilePic: profilePic.trim() || getGoogleAvatar(trimmed),
       });
@@ -51,12 +58,12 @@ export default function Login() {
 
   const handleGuestLogin = (e) => {
     e.preventDefault();
-    if (!name.trim()) return;
+    if (!username.trim() || password.length < 6) return;
     setIsLoading(true);
     setTimeout(() => {
       login({
-        name: name.trim(),
-        profilePic: profilePic.trim() || getGoogleAvatar(name.trim()),
+        name: username.trim(),
+        profilePic: profilePic.trim() || getGoogleAvatar(username.trim()),
       });
       navigate('/home');
     }, 600);
@@ -104,6 +111,39 @@ export default function Login() {
 
         <div className="divider">Login Details</div>
 
+        <div className="form-group">
+          <label className="form-label">Username</label>
+          <input
+            type="text"
+            className="form-input"
+            placeholder="choose a username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Password</label>
+          <div className="input-with-icon">
+            <input
+              type={showPassword ? "text" : "password"}
+              className="form-input"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button 
+              type="button" 
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? '🙈' : '👁️'}
+            </button>
+          </div>
+        </div>
+
         {/* Gmail Login Form */}
         {mode === 'gmail' && (
           <form onSubmit={handleGmailLogin} className="auth-form">
@@ -139,18 +179,6 @@ export default function Login() {
         {/* Guest Login Form */}
         {mode === 'guest' && (
           <form onSubmit={handleGuestLogin} className="auth-form">
-            <div className="form-group">
-              <label className="form-label">Your Name</label>
-              <input
-                type="text"
-                className="form-input"
-                placeholder="e.g. John Doe"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                autoFocus
-              />
-            </div>
             <button
               type="submit"
               className="btn btn-primary"
