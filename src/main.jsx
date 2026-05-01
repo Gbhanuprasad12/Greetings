@@ -9,7 +9,7 @@ import { createRoot } from 'react-dom/client';
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <UserProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={window.location.pathname.includes('/Greetings') ? '/Greetings' : ''}>
         <App />
       </BrowserRouter>
     </UserProvider>
