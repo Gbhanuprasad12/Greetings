@@ -1,8 +1,7 @@
-services:
-  - type: static
-    name: greetings-app
+staticSites:
+  - name: greetings-app
     buildCommand: npm run build
-    staticPublishDir: dist
+    publishDir: dist
     routes:
       - type: rewrite
         source: /*
