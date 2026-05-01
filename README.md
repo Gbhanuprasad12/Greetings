@@ -7,8 +7,11 @@ A personalized greeting card application where users can create customized templ
 - **Authentication**: Simple guest/Google-like login flow that captures name and profile picture.
 - **Categorized Templates**: Browse templates by categories like Birthday, Anniversary, Festivals, etc.
 - **Live Preview**: See your profile picture and name superimposed directly onto the templates in real-time.
-- **Premium Upsell**: Distinguishes between free and premium templates, prompting users to upgrade if they choose a premium one.
+- **Customization**: Users can choose between various categories (Birthdays, Anniversaries, Festivals, etc.) and personalize cards with their own text.
 - **Sharing & Downloading**: Allows users to convert the customized template into an actual image (`png`) to download or share using the Native Share API.
+
+## 🚀 Live Demo
+You can view the live application here: **[https://Gbhanuprasad12.github.io/Greetings/](https://Gbhanuprasad12.github.io/Greetings/)** (or your Render URL if preferred).
 
 ## Built With
 
