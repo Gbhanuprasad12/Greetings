@@ -11,7 +11,7 @@ A personalized greeting card application where users can create customized templ
 - **Sharing & Downloading**: Allows users to convert the customized template into an actual image (`png`) to download or share using the Native Share API.
 
 ## 🚀 Live Demo
-You can view the live application here: **[https://Gbhanuprasad12.github.io/Greetings/](https://Gbhanuprasad12.github.io/Greetings/)** (or your Render URL if preferred).
+You can view the live application here: **[https://greetings-bl0b.onrender.com](https://greetings-bl0b.onrender.com)**
 
 ## Built With
 
