@@ -21,6 +21,10 @@ This library parses the referenced DOM node using a `useRef`, calculates the com
    - *Solution*: Passed `{ pixelRatio: 2 }` in `html-to-image` options to scale up the canvas before rendering, significantly improving output sharpness.
 3. **Native Sharing Constraints**: The native `navigator.share()` API does not reliably support Data URLs directly, it strictly expects standard File objects in many OS versions.
    - *Solution*: A fetch sequence was set up to convert the `dataUrL` -> `blob` -> `File` object before passing it to `navigator.share()`, incorporating a fallback to regular download if Web Share API was unavailable.
+4. **Deployment & Environment Constraints**: During deployment to static hosting platforms like Render and GitHub Pages, "white screen" issues occurred due to React Router mismatching with subpaths (e.g., `/Greetings/`).
+   - *Solution*: Implemented a dynamic `basename` logic in `BrowserRouter` and used relative asset paths (`base: './'`) in Vite configuration to ensure portability across root and subpath environments.
+5. **UI Polish & Icon Consistency**: Relying on system emojis for the password toggle resulted in inconsistent visual experiences across different operating systems.
+   - *Solution*: Switched to a unified SVG icon set (`lucide-react`), providing a cross-platform, professional look with the `Eye` and `EyeOff` components.
 
 ## Future Improvements
 - **Scalability**: Implementing a backend (Node.js/Express with MongoDB) to handle proper server-side authentication (JWTs) and user data persistence. The templates could similarly be stored in an S3 bucket with a CDN to minimize bundle loading times.
